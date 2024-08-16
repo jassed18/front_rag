@@ -1,0 +1,16 @@
+.App {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+#responseArea {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 100px;
+}
