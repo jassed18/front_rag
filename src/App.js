@@ -8,6 +8,9 @@ function App() {
   const [useRAG, setUseRAG] = useState(false);
   const [response, setResponse] = useState('');
 
+  // Define la URL base para las solicitudes API
+  const API_BASE_URL = 'http://localhost:5001'; // Cambia esto si tu servidor está en una URL diferente
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -22,7 +25,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      await axios.post('http://192.168.0.5:5000/upload_pdf', formData);
+      await axios.post(`${API_BASE_URL}/upload_pdf`, formData);
       alert('PDF cargado con éxito');
     } catch (error) {
       console.error('Error al cargar el PDF:', error);
@@ -37,7 +40,7 @@ function App() {
     }
 
     try {
-      const res = await axios.post('http://192.168.0.5:5000/chat', {
+      const res = await axios.post(`${API_BASE_URL}/chat`, {
         prompt: prompt.trim(),
         use_rag: useRAG
       });
