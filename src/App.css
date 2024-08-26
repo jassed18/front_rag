@@ -1,16 +1,22 @@
 .App {
   font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+}
+.app-container {
+  padding-top: 70px; /* Ajusta el valor según la altura de tu navbar */
+}
+.chat-container {
+  margin-top: 20px;
 }
 
-button {
-  margin-left: 10px;
-}
-
-#responseArea {
-  border: 1px solid #ccc;
+.message {
   padding: 10px;
-  min-height: 100px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.message.user {
+  background-color: #e1ffc7;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
