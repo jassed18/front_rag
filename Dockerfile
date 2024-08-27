@@ -1,5 +1,5 @@
 # Imagen base liviana de Node.js
-FROM node:18-alpine
+FROM node:20.16.0-alpine
  
 # Variables de entorno
 ENV APP_HOME /app
@@ -13,6 +13,8 @@ COPY package.json package-lock.json $APP_HOME/
 RUN npm ci --only=production
  
 COPY . $APP_HOME/
+
+RUN npm run build
  
 # Exponer el puerto
 EXPOSE 3000
