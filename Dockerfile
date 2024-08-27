@@ -1,5 +1,5 @@
 # Etapa 1: Construcción
-FROM node:18.12.0
+FROM node:18.12.0 AS build
 
 # Establecer el directorio de trabajo
 WORKDIR /app
