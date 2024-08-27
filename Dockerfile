@@ -1,30 +1,22 @@
-# Etapa 1: Construcción
-FROM node:18.12.0 AS build
+# Imagen base liviana de Node.js
+FROM node:14-alpine
 
-# Establecer el directorio de trabajo
-WORKDIR /app
+# Variables de entorno
+ENV APP_HOME /app
 
-# Copiar package.json y package-lock.json
-COPY package*.json ./
+# Configurar el directorio de trabajo
+WORKDIR $APP_HOME
 
-# Instalar dependencias
-RUN npm install
+# Copiar solo los archivos necesarios
+COPY package.json package-lock.json $APP_HOME/
+RUN npm ci --only=production
 
 # Copiar el resto de los archivos del proyecto
-COPY . .
+COPY . $APP_HOME/
 
-# Construir la aplicación
-RUN npm run build
-
-# Etapa 2: Servir la aplicación
-FROM nginx:alpine
-
-
-# Copiar los archivos construidos desde la etapa de construcción
-COPY --from=build /app/build /usr/share/nginx/html
 
 # Exponer el puerto
-EXPOSE 80
+EXPOSE 3000
 
-# Comando para ejecutar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Comando de inicio
+CMD ["npm", "start"]
